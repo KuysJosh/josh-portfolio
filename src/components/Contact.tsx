@@ -6,20 +6,33 @@ import { portfolioData } from "../data/portfolioData";
 export const Contact: React.FC = () => {
   const { onPointerMove: onCardSpotlight } = useCardSpotlight();
   const mailMagnetic = useMagnetic(0.16, 0.26);
+  const phoneMagnetic = useMagnetic(0.16, 0.26);
   const submitMagnetic = useMagnetic(0.16, 0.26);
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (navigator.clipboard) {
       navigator.clipboard.writeText(portfolioData.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
     } else {
       window.location.href = `mailto:${portfolioData.email}`;
+    }
+  };
+
+  const handleCopyPhone = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(portfolioData.phone);
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2500);
+    } else {
+      window.location.href = `tel:${portfolioData.phone}`;
     }
   };
 
@@ -42,7 +55,8 @@ export const Contact: React.FC = () => {
           <span className="k">/contact</span>
           <h2>Let’s build something reliable.</h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px", alignItems: "stretch", maxWidth: "480px" }}>
+            {/* Email Button */}
             <a
               className="mail"
               href={`mailto:${portfolioData.email}`}
@@ -50,38 +64,86 @@ export const Contact: React.FC = () => {
               onPointerMove={mailMagnetic.onPointerMove}
               onPointerLeave={mailMagnetic.onPointerLeave}
               title="Click to copy email address"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "14px 24px",
+                fontSize: "clamp(15px, 2.5vw, 20px)",
+              }}
             >
-              {portfolioData.email}
+              <span>✉ {portfolioData.email}</span>
               <span
                 style={{
-                  fontSize: "12px",
-                  marginLeft: "12px",
+                  fontSize: "11.5px",
                   padding: "4px 10px",
                   borderRadius: "99px",
-                  background: copied ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.1)",
-                  color: copied ? "var(--ok)" : "var(--silver)",
-                  verticalAlign: "middle",
+                  background: copiedEmail ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.08)",
+                  color: copiedEmail ? "var(--ok)" : "var(--silver)",
                   fontFamily: "var(--mono)",
                   fontWeight: 500,
-                  transition: "all 0.3s",
+                  whiteSpace: "nowrap",
                 }}
               >
-                {copied ? "✓ Copied!" : "Click to copy"}
+                {copiedEmail ? "✓ Copied!" : "Copy"}
+              </span>
+            </a>
+
+            {/* Phone Button */}
+            <a
+              className="mail"
+              href={`tel:${portfolioData.phone}`}
+              onClick={handleCopyPhone}
+              onPointerMove={phoneMagnetic.onPointerMove}
+              onPointerLeave={phoneMagnetic.onPointerLeave}
+              title="Click to call or copy phone number"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "14px 24px",
+                fontSize: "clamp(15px, 2.5vw, 20px)",
+              }}
+            >
+              <span>📱 {portfolioData.phone}</span>
+              <span
+                style={{
+                  fontSize: "11.5px",
+                  padding: "4px 10px",
+                  borderRadius: "99px",
+                  background: copiedPhone ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.08)",
+                  color: copiedPhone ? "var(--ok)" : "var(--silver)",
+                  fontFamily: "var(--mono)",
+                  fontWeight: 500,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {copiedPhone ? "✓ Copied!" : "Call / Copy"}
               </span>
             </a>
           </div>
 
+          <div
+            style={{
+              marginTop: "20px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontFamily: "var(--mono)",
+              fontSize: "13px",
+              color: "var(--mute)",
+            }}
+          >
+            <span>📍 Based in:</span>
+            <span style={{ color: "var(--ice)", fontWeight: 500 }}>{portfolioData.location}</span>
+          </div>
+
           <div className="links">
-            {portfolioData.socials.map((soc, idx) => (
-              <a
-                key={idx}
-                href={soc.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {soc.label} ↗
-              </a>
-            ))}
+            <a href={`tel:${portfolioData.phone}`}>Call Directly</a>
+            <a href={`sms:${portfolioData.phone}`}>SMS</a>
+            <a href={portfolioData.githubUrl} target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
           </div>
         </div>
 

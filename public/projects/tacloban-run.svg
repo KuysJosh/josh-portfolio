@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140b2b" />
+      <stop offset="50%" stop-color="#0b1730" />
+      <stop offset="100%" stop-color="#072021" />
+    </linearGradient>
+    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f72585" />
+      <stop offset="50%" stop-color="#7209b7" />
+      <stop offset="100%" stop-color="#4cc9f0" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg3)"/>
+
+  <!-- Event Header -->
+  <rect x="40" y="35" width="720" height="135" rx="18" fill="rgba(255,255,255,0.03)" stroke="rgba(247, 37, 133, 0.3)" stroke-width="1.5" />
+  <text x="70" y="75" fill="#f72585" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700">TACLOBAN CITY · ANNUAL MARATHON</text>
+  <text x="70" y="115" fill="#fff" font-family="sans-serif" font-weight="900" font-size="34">Tacloban Community Run</text>
+  <text x="70" y="145" fill="#cbd5e1" font-family="sans-serif" font-size="14">Official registration, live elevation charts &amp; runners portal</text>
+
+  <!-- Distance Badges -->
+  <rect x="520" y="65" width="65" height="34" rx="17" fill="#f72585" />
+  <text x="542" y="87" fill="#fff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">5K</text>
+  <rect x="595" y="65" width="70" height="34" rx="17" fill="#7209b7" />
+  <text x="615" y="87" fill="#fff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">10K</text>
+  <rect x="675" y="65" width="70" height="34" rx="17" fill="#4361ee" />
+  <text x="695" y="87" fill="#fff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">21K</text>
+
+  <!-- Elevation / Route Chart -->
+  <rect x="40" y="190" width="460" height="225" rx="16" fill="#081024" stroke="rgba(76, 201, 240, 0.2)" stroke-width="1" />
+  <text x="65" y="222" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="12">San Juanico Bridge Route Profile (Elevation)</text>
+  
+  <!-- Wave Graph -->
+  <path d="M65,360 C120,340 160,260 210,270 C260,280 300,320 350,300 C400,280 430,250 475,320 L475,370 L65,370 Z" fill="rgba(76, 201, 240, 0.15)"/>
+  <path d="M65,360 C120,340 160,260 210,270 C260,280 300,320 350,300 C400,280 430,250 475,320" fill="none" stroke="url(#trackGrad)" stroke-width="3.5" />
+
+  <!-- Right: Live Registration Widget -->
+  <rect x="520" y="190" width="240" height="225" rx="16" fill="#081024" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <text x="545" y="225" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="12">Registered Runners</text>
+  <text x="545" y="265" fill="#fff" font-family="sans-serif" font-weight="800" font-size="34">1,842</text>
+  <rect x="545" y="290" width="190" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <rect x="545" y="290" width="150" height="8" rx="4" fill="#10b981"/>
+  <text x="545" y="325" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12">● 79% Slots Filled</text>
+  <rect x="545" y="350" width="190" height="42" rx="21" fill="url(#trackGrad)"/>
+  <text x="590" y="376" fill="#fff" font-family="sans-serif" font-weight="700" font-size="13">Register Now ↗</text>
+</svg>

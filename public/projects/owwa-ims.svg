@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1733" />
+      <stop offset="100%" stop-color="#040b1a" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg2)"/>
+  
+  <!-- Top Navigation Header -->
+  <rect x="40" y="40" width="720" height="55" rx="12" fill="#0d1f42" stroke="rgba(76, 201, 240, 0.2)" stroke-width="1" />
+  <circle cx="70" cy="67" r="14" fill="#3b82f6" />
+  <text x="96" y="73" fill="#fff" font-family="sans-serif" font-weight="700" font-size="16">OWWA Information Management System</text>
+  <rect x="580" y="52" width="160" height="30" rx="15" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="1" />
+  <text x="605" y="72" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">● Live Database</text>
+
+  <!-- Metric Cards -->
+  <rect x="40" y="115" width="225" height="100" rx="14" fill="#0c1836" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="60" y="145" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="12">OFW Records</text>
+  <text x="60" y="185" fill="#fff" font-family="sans-serif" font-weight="800" font-size="28">12,480</text>
+  <text x="175" y="182" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12">+14%</text>
+
+  <rect x="287" y="115" width="225" height="100" rx="14" fill="#0c1836" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="307" y="145" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="12">Assistance Requests</text>
+  <text x="307" y="185" fill="#4cc9f0" font-family="sans-serif" font-weight="800" font-size="28">3,892</text>
+  <text x="420" y="182" fill="#3b82f6" font-family="'JetBrains Mono', monospace" font-size="12">active</text>
+
+  <rect x="535" y="115" width="225" height="100" rx="14" fill="#0c1836" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="555" y="145" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="12">Verification Rate</text>
+  <text x="555" y="185" fill="#10b981" font-family="sans-serif" font-weight="800" font-size="28">99.4%</text>
+
+  <!-- Data Table Mockup -->
+  <rect x="40" y="235" width="720" height="175" rx="14" fill="#081229" stroke="rgba(76, 201, 240, 0.15)" stroke-width="1" />
+  <rect x="40" y="235" width="720" height="35" rx="14" fill="#0f224a" />
+  <text x="65" y="258" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="11">CASE ID</text>
+  <text x="170" y="258" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="11">BENEFICIARY</text>
+  <text x="330" y="258" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="11">REGION</text>
+  <text x="490" y="258" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="11">STATUS</text>
+  <text x="640" y="258" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="11">ACTION</text>
+
+  <!-- Row 1 -->
+  <text x="65" y="295" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="12">OWWA-8042</text>
+  <text x="170" y="295" fill="#fff" font-family="sans-serif" font-size="13">R. Dela Cruz</text>
+  <text x="330" y="295" fill="#8292aa" font-family="sans-serif" font-size="13">Region VIII (Leyte)</text>
+  <rect x="485" y="280" width="85" height="22" rx="11" fill="rgba(16, 185, 129, 0.2)" />
+  <text x="502" y="295" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11">Approved</text>
+  <text x="640" y="295" fill="#4cc9f0" font-family="'JetBrains Mono', monospace" font-size="12">View ↗</text>
+
+  <!-- Row 2 -->
+  <text x="65" y="340" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="12">OWWA-8043</text>
+  <text x="170" y="340" fill="#fff" font-family="sans-serif" font-size="13">M. Santos</text>
+  <text x="330" y="340" fill="#8292aa" font-family="sans-serif" font-size="13">Tacloban City</text>
+  <rect x="485" y="325" width="85" height="22" rx="11" fill="rgba(254, 188, 46, 0.2)" />
+  <text x="502" y="340" fill="#febc2e" font-family="'JetBrains Mono', monospace" font-size="11">Pending</text>
+  <text x="640" y="340" fill="#4cc9f0" font-family="'JetBrains Mono', monospace" font-size="12">Review ↗</text>
+
+  <!-- Row 3 -->
+  <text x="65" y="385" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="12">OWWA-8044</text>
+  <text x="170" y="385" fill="#fff" font-family="sans-serif" font-size="13">J. Astanio</text>
+  <text x="330" y="385" fill="#8292aa" font-family="sans-serif" font-size="13">Eastern Visayas</text>
+  <rect x="485" y="370" width="85" height="22" rx="11" fill="rgba(16, 185, 129, 0.2)" />
+  <text x="502" y="385" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="11">Verified</text>
+  <text x="640" y="385" fill="#4cc9f0" font-family="'JetBrains Mono', monospace" font-size="12">View ↗</text>
+</svg>

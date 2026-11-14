@@ -20,6 +20,7 @@ export interface ProjectItem {
   name?: string;
   title: string;
   description: string;
+  image?: string;
   url?: string;
   tags: string[];
   stars?: number;
@@ -45,30 +46,33 @@ export const portfolioData = {
   name: "Josh",
   githubUsername: "KuysJosh",
   githubUrl: "https://github.com/KuysJosh",
-  location: "Cebu, Philippines",
+  location: "Tacloban City, Leyte",
+  email: "astaniojoshuan@gmail.com",
+  phone: "09285695894",
   roles: [
     "IT professional",
-    "Full-stack developer",
-    "Systems & network support",
+    "MERN Stack Developer",
+    "Full-Stack Web & Systems",
+    "Python & PHP Developer",
   ],
   headline: {
     line1: "Hi, I’m Josh.",
     line2: "I build reliable IT solutions.",
   },
-  lead: "An IT professional from Cebu, Philippines. I design, build and support secure systems that teams can depend on.",
+  lead: "An IT professional based in Tacloban City, Leyte. I design, build, and support secure, high-performance systems and web applications.",
   status: "online · open to opportunities",
   experienceTag: "3+ years",
   experienceSubtag: "in IT",
-  email: "hello@example.com",
   marqueeSkills: [
-    "Networking",
-    "Cloud",
-    "Cybersecurity",
-    "Web development",
+    "MERN Stack",
+    "PHP",
+    "MySQL",
+    "Python",
+    "JavaScript",
+    "HTML & CSS",
     "Linux",
     "Databases",
-    "Automation",
-    "Tech support",
+    "REST APIs",
   ],
   about: {
     tag: "/about",
@@ -76,70 +80,71 @@ export const portfolioData = {
     leadParagraph:
       "I care about the details behind the screen: clean setups, clear documentation and honest communication when something breaks.",
     subParagraph:
-      "Replace this with your own story: what you studied, what you work on and where you want to grow.",
+      "Passionate about building full-stack web applications and robust database architectures. Currently based in Tacloban City, Leyte.",
     terminal: {
       userHost: "josh@portfolio: ~",
       items: [
         { cmd: "whoami", response: "josh — IT professional" },
         {
-          cmd: "cat focus.txt",
+          cmd: "cat stack.txt",
           bullets: [
-            "web & systems dev",
-            "networks & security",
-            "troubleshooting",
+            "MERN (MongoDB, Express, React, Node)",
+            "PHP & MySQL database systems",
+            "Python development & scripting",
+            "Modern HTML5, CSS3, & JavaScript",
           ],
         },
-        { cmd: "location", response: "Cebu, PH", comment: "UTC+8" },
+        { cmd: "location", response: "Tacloban City, Leyte", comment: "UTC+8" },
         { cmd: "status", response: "open to work" },
       ],
     },
     stats: [
       { number: 3, suffix: "+", label: "Years in IT" },
-      { number: 20, suffix: "+", label: "Projects" },
+      { number: 12, suffix: "+", label: "Projects" },
       { number: 99, suffix: "%", label: "Uptime mindset" },
-      { number: 10, suffix: "+", label: "Clients" },
+      { number: 100, suffix: "%", label: "Commitment" },
     ] as StatItem[],
   },
   stack: [
     {
-      title: "frontend",
+      title: "MERN & Frontend",
       icon: "</>",
-      skills: ["HTML", "CSS", "JavaScript", "React"],
+      skills: ["React", "JavaScript", "HTML", "CSS"],
     },
     {
-      title: "backend",
+      title: "Backend & Systems",
       icon: "{ }",
-      skills: ["Node.js", "Python", "PHP", "REST APIs"],
+      skills: ["Node.js", "Express.js", "PHP", "Python"],
     },
     {
-      title: "data & cloud",
+      title: "Databases & Storage",
       icon: "▤",
-      skills: ["MySQL", "PostgreSQL", "AWS", "Firebase"],
+      skills: ["MySQL", "MongoDB", "REST APIs"],
     },
     {
-      title: "ops & security",
+      title: "Tools & DevOps",
       icon: "⌁",
-      skills: ["Linux", "Git", "Networking", "Docker"],
+      skills: ["Git", "Linux", "Docker", "Vite"],
     },
   ] as StackCategory[],
   experience: [
     {
       period: "2025 — present",
-      role: "Your latest role",
+      role: "Full-Stack & Systems Developer",
       description:
-        "Company name. Describe what you built or supported and the result, with numbers if you have them.",
+        "Building responsive web applications and database solutions using MERN, PHP, and MySQL for local organizations and web projects in Leyte.",
     },
     {
-      period: "2023 — 2025",
-      role: "Previous role",
+      period: "2024 — 2025",
+      role: "IT Intern / On-the-Job Training",
       description:
-        "Company name. Describe your responsibilities and one achievement you’re proud of.",
+        "Overseas Workers Welfare Administration (OWWA). Supported data management, digital archiving, and internal systems operations.",
     },
     {
-      period: "2022",
-      role: "Internship or education",
+      period: "2022 — 2024",
+      role: "Computer & IT Education",
       description:
-        "School or company name. Add your degree, course or training here.",
+        "Comprehensive training in software development, database administration, web programming, and network systems in Tacloban City.",
     },
   ] as ExperienceItem[],
   projects: [
@@ -148,8 +153,9 @@ export const portfolioData = {
       title: "Josh IT Portfolio",
       description:
         "Modern interactive portfolio built with React, TypeScript & Vite. Features 60 FPS 3D head-tracking, custom terminal UI, and cybernetic HUD styling.",
+      image: "/projects/josh-portfolio.svg",
       url: "https://github.com/KuysJosh/josh-portfolio",
-      tags: ["React", "TypeScript", "Vite", "CSS3"],
+      tags: ["React", "TypeScript", "Vite", "CSS"],
       terminal: {
         command: "$ npm run build",
         output: ["✓ compiled successfully", "✓ 39 modules transformed", "✓ ready for production"],
@@ -161,6 +167,7 @@ export const portfolioData = {
       title: "OWWA IMS",
       description:
         "OWWA Information Management System — Web-based data management, record handling, and reporting platform.",
+      image: "/projects/owwa-ims.svg",
       url: "https://github.com/KuysJosh/owwa_ims",
       tags: ["PHP", "MySQL", "Information System"],
       terminal: {
@@ -174,8 +181,9 @@ export const portfolioData = {
       title: "Tacloban Community Run",
       description:
         "Community sports event portal for participants, showcasing registration details, marathon schedules, and route maps.",
+      image: "/projects/tacloban-run.svg",
       url: "https://github.com/KuysJosh/Tacloban-Community-Run",
-      tags: ["HTML5", "CSS3", "JavaScript", "Sports Portal"],
+      tags: ["HTML", "CSS", "JS", "Event Portal"],
       terminal: {
         command: "$ ping tacloban-run.local",
         output: ["64 bytes: time=1.1 ms", "0% packet loss", "✓ CDN assets loaded"],
@@ -187,8 +195,9 @@ export const portfolioData = {
       title: "Digital Archiving System",
       description:
         "Secure document archiving and record-keeping system with categorized file storage, audit logs, and search capabilities.",
+      image: "/projects/archiving.svg",
       url: "https://github.com/KuysJosh/archiving",
-      tags: ["PHP", "Database", "Document Management"],
+      tags: ["PHP", "MySQL", "Archiving"],
       terminal: {
         command: "$ SELECT COUNT(*) FROM archives;",
         output: ["2,450 records indexed", "Integrity check: PASS", "Query time: 3ms"],
@@ -200,8 +209,9 @@ export const portfolioData = {
       title: "Interactive Photobooth",
       description:
         "Live web-based photobooth app designed for events, with real-time camera preview, filter engine, and instant photo capture.",
+      image: "/projects/photobooth.svg",
       url: "https://github.com/KuysJosh/photobooth",
-      tags: ["JavaScript", "HTML5", "MediaStream API"],
+      tags: ["JS", "HTML", "CSS", "MediaStream"],
       terminal: {
         command: "$ navigator.mediaDevices.getUserMedia()",
         output: ["✓ Camera: 1080p 60fps connected", "✓ Canvas filter pipeline ready"],
@@ -213,8 +223,9 @@ export const portfolioData = {
       title: "RMMTC Platform",
       description:
         "Enterprise platform for operational tracking, service records, and management workflows.",
+      image: "/projects/rmmtc.svg",
       url: "https://github.com/KuysJosh/rmmtc",
-      tags: ["PHP", "Web App", "Enterprise"],
+      tags: ["PHP", "MySQL", "Web App"],
       terminal: {
         command: "$ docker compose up -d",
         output: ["✓ 3 services running", "✓ healthcheck: healthy"],
@@ -223,13 +234,15 @@ export const portfolioData = {
     },
   ] as ProjectItem[],
   certifications: [
-    { title: "Certificate one", issuerYear: "Issuer · 2025" },
-    { title: "Certificate two", issuerYear: "Issuer · 2024" },
-    { title: "Certificate three", issuerYear: "Issuer · 2023" },
+    { title: "OWWA (OJT)", issuerYear: "Overseas Workers Welfare Administration · Certified OJT" },
+    { title: "Dev8", issuerYear: "Dev8 Regional Tech Conference" },
+    { title: "Start-up Conference", issuerYear: "Philippine Tech & Innovation Conference" },
+    { title: "UDEMY (MERN Stack)", issuerYear: "Udemy · Full-Stack Web Development" },
+    { title: "Python (UDEMY)", issuerYear: "Udemy · Python Programming Masterclass" },
   ] as CertificationItem[],
   socials: [
     { label: "GitHub", url: "https://github.com/KuysJosh" },
-    { label: "LinkedIn", url: "#" },
-    { label: "Facebook", url: "#" },
+    { label: "Email", url: "mailto:astaniojoshuan@gmail.com" },
+    { label: "Call / SMS", url: "tel:09285695894" },
   ] as SocialLink[],
 };

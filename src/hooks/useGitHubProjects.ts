@@ -49,6 +49,7 @@ export function useGitHubProjects(username = "KuysJosh") {
             if (existing) {
               return {
                 ...existing,
+                image: existing.image,
                 url: repo.html_url,
                 stars: repo.stargazers_count,
                 forks: repo.forks_count,

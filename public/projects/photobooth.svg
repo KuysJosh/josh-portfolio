@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181308" />
+      <stop offset="100%" stop-color="#0b0805" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg4)"/>
+
+  <!-- Camera Viewfinder Box -->
+  <rect x="50" y="45" width="460" height="360" rx="18" fill="#120e09" stroke="#febc2e" stroke-width="1.5"/>
+  
+  <!-- Viewfinder corners -->
+  <path d="M80,105 L80,75 L110,75" fill="none" stroke="#febc2e" stroke-width="3"/>
+  <path d="M480,105 L480,75 L450,75" fill="none" stroke="#febc2e" stroke-width="3"/>
+  <path d="M80,345 L80,375 L110,375" fill="none" stroke="#febc2e" stroke-width="3"/>
+  <path d="M480,345 L480,375 L450,375" fill="none" stroke="#febc2e" stroke-width="3"/>
+
+  <!-- Crosshairs -->
+  <circle cx="280" cy="225" r="28" fill="none" stroke="rgba(254, 188, 46, 0.4)" stroke-width="1.5" />
+  <line x1="280" y1="185" x2="280" y2="265" stroke="rgba(254, 188, 46, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+  <line x1="240" y1="225" x2="320" y2="225" stroke="rgba(254, 188, 46, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+  <!-- Shutter Button -->
+  <circle cx="280" cy="355" r="26" fill="#ff5f57" stroke="#fff" stroke-width="3" filter="drop-shadow(0 0 10px rgba(255, 95, 87, 0.5))" />
+  <text x="210" y="90" fill="#febc2e" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">● REC · 1080P 60FPS</text>
+
+  <!-- Right: Retro Photo Film Strip -->
+  <rect x="545" y="45" width="205" height="360" rx="14" fill="#080604" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <rect x="560" y="65" width="175" height="90" rx="8" fill="#241a0d" stroke="rgba(254, 188, 46, 0.3)" stroke-width="1"/>
+  <circle cx="647" cy="110" r="18" fill="rgba(254, 188, 46, 0.2)"/>
+  <text x="590" y="145" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="10">FRAME 01 · RETRO B&amp;W</text>
+
+  <rect x="560" y="170" width="175" height="90" rx="8" fill="#241a0d" stroke="rgba(254, 188, 46, 0.3)" stroke-width="1"/>
+  <circle cx="647" cy="215" r="18" fill="rgba(254, 188, 46, 0.2)"/>
+  <text x="595" y="250" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="10">FRAME 02 · VIBRANT</text>
+
+  <rect x="560" y="275" width="175" height="90" rx="8" fill="#241a0d" stroke="rgba(254, 188, 46, 0.3)" stroke-width="1"/>
+  <circle cx="647" cy="320" r="18" fill="rgba(254, 188, 46, 0.2)"/>
+  <text x="590" y="355" fill="#8292aa" font-family="'JetBrains Mono', monospace" font-size="10">FRAME 03 · CYBERPUNK</text>
+</svg>
