@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FolderGit2, ExternalLink, Star, GitFork, Copy, Check } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useGitHubProjects } from "../hooks/useGitHubProjects";
 import { portfolioData } from "../data/portfolioData";
@@ -70,7 +71,8 @@ export const Projects: React.FC = () => {
             justifyContent: "space-between",
             alignItems: "flex-end",
             flexWrap: "wrap",
-            gap: "20px",
+            gap: "16px",
+            marginBottom: "clamp(16px, 3vw, 28px)",
           }}
         >
           <div>
@@ -82,9 +84,8 @@ export const Projects: React.FC = () => {
           <div
             style={{
               display: "flex",
-              gap: "8px",
+              gap: "6px",
               flexWrap: "wrap",
-              marginBottom: "clamp(20px, 4vw, 36px)",
             }}
           >
             {categories.map((cat) => (
@@ -92,9 +93,9 @@ export const Projects: React.FC = () => {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 style={{
-                  padding: "8px 18px",
+                  padding: "6px 14px",
                   borderRadius: "99px",
-                  fontSize: "13px",
+                  fontSize: "12px",
                   fontWeight: 500,
                   fontFamily: "var(--mono)",
                   cursor: "pointer",
@@ -102,7 +103,7 @@ export const Projects: React.FC = () => {
                   background: filter === cat ? "rgba(76, 201, 240, 0.15)" : "rgba(255, 255, 255, 0.03)",
                   color: filter === cat ? "#fff" : "var(--mute)",
                   transition: "all 0.25s var(--ease)",
-                  boxShadow: filter === cat ? "0 0 16px rgba(76, 201, 240, 0.25)" : "none",
+                  boxShadow: filter === cat ? "0 0 14px rgba(76, 201, 240, 0.25)" : "none",
                 }}
               >
                 {cat}
@@ -111,6 +112,7 @@ export const Projects: React.FC = () => {
           </div>
         </div>
 
+        {/* 2 Projects Per Row Grid */}
         <div className="work">
           {filteredProjects.map((project, idx) => (
             <a
@@ -124,6 +126,7 @@ export const Projects: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
+                textDecoration: "none",
               }}
             >
               {/* Project Preview Image Banner */}
@@ -132,7 +135,7 @@ export const Projects: React.FC = () => {
                   style={{
                     position: "relative",
                     width: "100%",
-                    aspectRatio: "16 / 9",
+                    aspectRatio: "16 / 10",
                     background: "#080c18",
                     overflow: "hidden",
                     borderBottom: "1px solid var(--line)",
@@ -140,7 +143,7 @@ export const Projects: React.FC = () => {
                 >
                   <img
                     src={project.image}
-                    alt={`${project.title} Preview Screenshot`}
+                    alt={`${project.title} Preview`}
                     loading="lazy"
                     style={{
                       width: "100%",
@@ -155,7 +158,7 @@ export const Projects: React.FC = () => {
                     style={{
                       position: "absolute",
                       inset: 0,
-                      background: "linear-gradient(180deg, transparent 60%, rgba(5, 7, 12, 0.7) 100%)",
+                      background: "linear-gradient(180deg, transparent 60%, rgba(5, 7, 12, 0.65) 100%)",
                       pointerEvents: "none",
                     }}
                   />
@@ -163,13 +166,13 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Terminal Window Output */}
-              <div className="win" style={{ margin: project.image ? "12px 14px 0" : "14px" }}>
+              <div className="win">
                 <div className="t">
                   <i />
                   <i />
                   <i />
                   <span>
-                    {project.name ? `github.com/${portfolioData.githubUsername}/${project.name}` : "terminal"}
+                    {project.name ? project.name : "terminal"}
                   </span>
 
                   <button
@@ -180,13 +183,15 @@ export const Projects: React.FC = () => {
                       color: copiedIndex === idx ? "var(--ok)" : "var(--mute)",
                       fontSize: "11px",
                       cursor: "pointer",
-                      padding: "2px 6px",
+                      padding: "2px 4px",
                       fontFamily: "var(--mono)",
-                      marginLeft: "8px",
+                      marginLeft: "auto",
+                      display: "inline-flex",
+                      alignItems: "center",
                     }}
                     title="Copy command"
                   >
-                    {copiedIndex === idx ? "✓" : "📋"}
+                    {copiedIndex === idx ? <Check size={11} color="var(--ok)" /> : <Copy size={11} />}
                   </button>
                 </div>
                 <pre style={{ "--c1": project.terminal.glowColor } as React.CSSProperties}>
@@ -200,13 +205,14 @@ export const Projects: React.FC = () => {
               <div className="body" style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
                   <h3>
-                    {project.title} <span>↗</span>
+                    <span>{project.title}</span>
+                    <ExternalLink size={14} className="proj-arrow" />
                   </h3>
                   <p>{project.description}</p>
                 </div>
 
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "6px", marginTop: "auto" }}>
-                  {project.tags.map((tag, tIdx) => {
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px", marginTop: "auto" }}>
+                  {project.tags.slice(0, 3).map((tag, tIdx) => {
                     const color = getLanguageColor(tag);
                     return (
                       <span
@@ -224,12 +230,12 @@ export const Projects: React.FC = () => {
                   })}
                   {typeof project.stars === "number" && project.stars > 0 && (
                     <span className="chip" style={{ color: "#febc2e", borderColor: "#febc2e40" }}>
-                      ★ {project.stars}
+                      <Star size={9} style={{ display: "inline", verticalAlign: "middle" }} /> {project.stars}
                     </span>
                   )}
                   {typeof project.forks === "number" && project.forks > 0 && (
                     <span className="chip" style={{ color: "var(--silver)" }}>
-                      ⑂ {project.forks}
+                      <GitFork size={9} style={{ display: "inline", verticalAlign: "middle" }} /> {project.forks}
                     </span>
                   )}
                 </div>
@@ -238,19 +244,22 @@ export const Projects: React.FC = () => {
           ))}
         </div>
 
-        <div style={{ marginTop: "44px", textAlign: "center" }} className="rv">
+        <div style={{ marginTop: "32px", textAlign: "center" }} className="rv">
           <a
             className="btn"
             href={portfolioData.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              padding: "14px 28px",
-              fontSize: "15px",
+              padding: "12px 24px",
+              fontSize: "14px",
               fontWeight: 500,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
-            Explore all repositories on GitHub ↗
+            <FolderGit2 size={16} /> Explore All Repositories on GitHub <ExternalLink size={14} />
           </a>
         </div>
       </div>

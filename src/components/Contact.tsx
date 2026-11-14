@@ -1,158 +1,254 @@
 import React, { useState } from "react";
+import { PhoneCall, MessageSquare, Mail, MapPin, Send, ExternalLink, Sparkles } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useMagnetic } from "../hooks/useMagnetic";
 import { portfolioData } from "../data/portfolioData";
 
 export const Contact: React.FC = () => {
   const { onPointerMove: onCardSpotlight } = useCardSpotlight();
-  const mailMagnetic = useMagnetic(0.16, 0.26);
-  const phoneMagnetic = useMagnetic(0.16, 0.26);
-  const submitMagnetic = useMagnetic(0.16, 0.26);
+  const callMagnetic = useMagnetic(0.12, 0.2);
+  const smsMagnetic = useMagnetic(0.12, 0.2);
+  const mailMagnetic = useMagnetic(0.12, 0.2);
+  const submitMagnetic = useMagnetic(0.12, 0.2);
 
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "Web Development (MERN / PHP)",
+    message: "",
+  });
   const [statusMessage, setStatusMessage] = useState("");
-
-  const handleCopyEmail = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(portfolioData.email);
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2500);
-    } else {
-      window.location.href = `mailto:${portfolioData.email}`;
-    }
-  };
-
-  const handleCopyPhone = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(portfolioData.phone);
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2500);
-    } else {
-      window.location.href = `tel:${portfolioData.phone}`;
-    }
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, email, message } = formData;
-    const bodyText = `${message}\n\n— ${name} (${email})`;
+    const { name, email, service, message } = formData;
+    const bodyText = `Project / Commission Inquiry:\nService: ${service}\n\nMessage:\n${message}\n\n— From: ${name} (${email})`;
     const mailtoUrl = `mailto:${portfolioData.email}?subject=${encodeURIComponent(
-      `Portfolio Inquiry from ${name}`
+      `[Commission Inquiry] ${service} - from ${name}`
     )}&body=${encodeURIComponent(bodyText)}`;
 
     window.location.href = mailtoUrl;
-    setStatusMessage("✓ Opening your email client to send...");
+    setStatusMessage("✓ Launching your email client...");
   };
 
   return (
     <section id="contact" className="alt">
       <div className="wrap cwrap">
         <div className="rv">
-          <span className="k">/contact</span>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
+            <Sparkles size={14} color="var(--ice)" />
+            <span className="k" style={{ margin: 0 }}>/commission &amp; contact</span>
+          </div>
+
           <h2>Let’s build something reliable.</h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "14px", alignItems: "stretch", maxWidth: "480px" }}>
-            {/* Email Button */}
+          <p style={{ color: "var(--silver)", fontSize: "14px", lineHeight: "1.5", marginBottom: "20px" }}>
+            Currently working as <b>IT Staff</b> and open for <b>commission projects</b>. Tap any option below to reach me instantly:
+          </p>
+
+          {/* Direct Action Buttons - Instant Call, SMS, Email */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px", width: "100%" }}>
+            {/* Direct Phone Call */}
             <a
-              className="mail"
+              className="card contact-action-card"
+              href={`tel:${portfolioData.phone}`}
+              onPointerMove={callMagnetic.onPointerMove}
+              onPointerLeave={callMagnetic.onPointerLeave}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                padding: "14px 18px",
+                textDecoration: "none",
+                border: "1px solid rgba(16, 185, 129, 0.3)",
+                background: "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(12, 18, 30, 0.8))",
+              }}
+            >
+              <div
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "12px",
+                  background: "rgba(16, 185, 129, 0.2)",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "var(--ok)",
+                  flexShrink: 0,
+                }}
+              >
+                <PhoneCall size={20} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: "11px", fontFamily: "var(--mono)", color: "var(--ok)", fontWeight: 600 }}>
+                  DIRECT CALL
+                </div>
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {portfolioData.phoneFormatted}
+                </div>
+              </div>
+              <span style={{ fontSize: "11px", color: "var(--mute)", fontFamily: "var(--mono)" }}>Tap to call ↗</span>
+            </a>
+
+            {/* Direct SMS Message */}
+            <a
+              className="card contact-action-card"
+              href={`sms:${portfolioData.phone}`}
+              onPointerMove={smsMagnetic.onPointerMove}
+              onPointerLeave={smsMagnetic.onPointerLeave}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                padding: "14px 18px",
+                textDecoration: "none",
+                border: "1px solid rgba(76, 201, 240, 0.3)",
+                background: "linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(12, 18, 30, 0.8))",
+              }}
+            >
+              <div
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "12px",
+                  background: "rgba(76, 201, 240, 0.2)",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "var(--ice)",
+                  flexShrink: 0,
+                }}
+              >
+                <MessageSquare size={20} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: "11px", fontFamily: "var(--mono)", color: "var(--ice)", fontWeight: 600 }}>
+                  SEND SMS / TEXT
+                </div>
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {portfolioData.phone}
+                </div>
+              </div>
+              <span style={{ fontSize: "11px", color: "var(--mute)", fontFamily: "var(--mono)" }}>Tap to text ↗</span>
+            </a>
+
+            {/* Direct Email */}
+            <a
+              className="card contact-action-card"
               href={`mailto:${portfolioData.email}`}
-              onClick={handleCopyEmail}
               onPointerMove={mailMagnetic.onPointerMove}
               onPointerLeave={mailMagnetic.onPointerLeave}
-              title="Click to copy email address"
               style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
-                padding: "14px 24px",
-                fontSize: "clamp(15px, 2.5vw, 20px)",
+                gap: "14px",
+                padding: "14px 18px",
+                textDecoration: "none",
+                border: "1px solid rgba(108, 130, 255, 0.3)",
+                background: "linear-gradient(135deg, rgba(108, 130, 255, 0.1), rgba(12, 18, 30, 0.8))",
               }}
             >
-              <span>✉ {portfolioData.email}</span>
-              <span
+              <div
                 style={{
-                  fontSize: "11.5px",
-                  padding: "4px 10px",
-                  borderRadius: "99px",
-                  background: copiedEmail ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.08)",
-                  color: copiedEmail ? "var(--ok)" : "var(--silver)",
-                  fontFamily: "var(--mono)",
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "12px",
+                  background: "rgba(108, 130, 255, 0.2)",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "var(--a2)",
+                  flexShrink: 0,
                 }}
               >
-                {copiedEmail ? "✓ Copied!" : "Copy"}
-              </span>
-            </a>
-
-            {/* Phone Button */}
-            <a
-              className="mail"
-              href={`tel:${portfolioData.phone}`}
-              onClick={handleCopyPhone}
-              onPointerMove={phoneMagnetic.onPointerMove}
-              onPointerLeave={phoneMagnetic.onPointerLeave}
-              title="Click to call or copy phone number"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "14px 24px",
-                fontSize: "clamp(15px, 2.5vw, 20px)",
-              }}
-            >
-              <span>📱 {portfolioData.phone}</span>
-              <span
-                style={{
-                  fontSize: "11.5px",
-                  padding: "4px 10px",
-                  borderRadius: "99px",
-                  background: copiedPhone ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.08)",
-                  color: copiedPhone ? "var(--ok)" : "var(--silver)",
-                  fontFamily: "var(--mono)",
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {copiedPhone ? "✓ Copied!" : "Call / Copy"}
-              </span>
+                <Mail size={20} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: "11px", fontFamily: "var(--mono)", color: "var(--a2)", fontWeight: 600 }}>
+                  DIRECT EMAIL
+                </div>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {portfolioData.email}
+                </div>
+              </div>
+              <span style={{ fontSize: "11px", color: "var(--mute)", fontFamily: "var(--mono)" }}>Open mail ↗</span>
             </a>
           </div>
 
+          {/* Interactive Google Map of Tacloban City, Leyte */}
           <div
+            className="card"
             style={{
               marginTop: "20px",
+              padding: "14px",
               display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              fontFamily: "var(--mono)",
-              fontSize: "13px",
-              color: "var(--mute)",
+              flexDirection: "column",
+              gap: "10px",
             }}
           >
-            <span>📍 Based in:</span>
-            <span style={{ color: "var(--ice)", fontWeight: 500 }}>{portfolioData.location}</span>
-          </div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <MapPin size={16} color="var(--ice)" />
+                <span style={{ fontSize: "13px", fontWeight: 600, color: "#fff" }}>
+                  {portfolioData.locationFull}
+                </span>
+              </div>
+              <a
+                href={portfolioData.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: "11px",
+                  fontFamily: "var(--mono)",
+                  color: "var(--ice)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+              >
+                Open Map <ExternalLink size={12} />
+              </a>
+            </div>
 
-          <div className="links">
-            <a href={`tel:${portfolioData.phone}`}>Call Directly</a>
-            <a href={`sms:${portfolioData.phone}`}>SMS</a>
-            <a href={portfolioData.githubUrl} target="_blank" rel="noopener noreferrer">
-              GitHub ↗
-            </a>
+            <div
+              style={{
+                width: "100%",
+                height: "170px",
+                borderRadius: "12px",
+                overflow: "hidden",
+                border: "1px solid var(--line-strong)",
+                position: "relative",
+              }}
+            >
+              <iframe
+                title="Google Map Tacloban City Leyte"
+                src={portfolioData.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{
+                  border: 0,
+                  filter: "invert(92%) hue-rotate(180deg) contrast(110%)",
+                }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
 
+        {/* Commission & Message Form */}
         <form
           className="card rv"
           id="f"
           onSubmit={handleSubmit}
           onPointerMove={onCardSpotlight}
+          style={{ padding: "clamp(18px, 3vw, 28px)" }}
         >
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+            <Sparkles size={16} color="var(--ice)" />
+            <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 700 }}>Commission &amp; Message</h3>
+          </div>
+          <p style={{ margin: "0 0 10px", color: "var(--mute)", fontSize: "13px" }}>
+            Send your project details or service inquiry directly:
+          </p>
+
           <div>
             <label htmlFor="n">Your Name</label>
             <input
@@ -179,13 +275,42 @@ export const Contact: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="m">Message</label>
+            <label htmlFor="svc">Requested Service / Commission</label>
+            <select
+              id="svc"
+              value={formData.service}
+              onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+              style={{
+                width: "100%",
+                background: "var(--ink3)",
+                border: "1px solid var(--line-strong)",
+                borderRadius: "14px",
+                padding: "12px 14px",
+                color: "var(--bone)",
+                fontFamily: "inherit",
+                fontSize: "14px",
+              }}
+            >
+              {portfolioData.commissionServices.map((svc, sIdx) => (
+                <option key={sIdx} value={svc} style={{ background: "#0d1424", color: "#fff" }}>
+                  {svc}
+                </option>
+              ))}
+              <option value="Other Inquiries" style={{ background: "#0d1424", color: "#fff" }}>
+                General Inquiry / Other
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="m">Project Details / Message</label>
             <textarea
               id="m"
               required
-              placeholder="Tell me about your project, idea, or questions..."
+              placeholder="Describe what you want to build or what IT help you need..."
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              style={{ minHeight: "100px" }}
             />
           </div>
 
@@ -194,13 +319,22 @@ export const Contact: React.FC = () => {
             type="submit"
             onPointerMove={submitMagnetic.onPointerMove}
             onPointerLeave={submitMagnetic.onPointerLeave}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+            }}
           >
-            Send message ↗
+            <Send size={16} /> Send Commission Request
           </button>
 
-          <div className="sent" id="ok" role="status">
-            {statusMessage}
-          </div>
+          {statusMessage && (
+            <div className="sent" id="ok" role="status">
+              {statusMessage}
+            </div>
+          )}
         </form>
       </div>
     </section>

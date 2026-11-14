@@ -1,4 +1,5 @@
 import React from "react";
+import { Code2, Server, Database, Terminal, Cpu } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { portfolioData } from "../data/portfolioData";
 
@@ -6,19 +7,28 @@ export const Stack: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
   const { stack } = portfolioData;
 
-  const getCategoryColor = (title: string) => {
-    switch (title.toLowerCase()) {
-      case "frontend":
-        return "#4cc9f0";
-      case "backend":
-        return "#7b8cff";
-      case "data & cloud":
-        return "#f72585";
-      case "ops & security":
-        return "#10b981";
+  const getIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Code2":
+        return <Code2 size={20} />;
+      case "Server":
+        return <Server size={20} />;
+      case "Database":
+        return <Database size={20} />;
+      case "Terminal":
+        return <Terminal size={20} />;
       default:
-        return "var(--ice)";
+        return <Cpu size={20} />;
     }
+  };
+
+  const getCategoryColor = (title: string) => {
+    const t = title.toLowerCase();
+    if (t.includes("mern") || t.includes("frontend")) return "#4cc9f0";
+    if (t.includes("backend") || t.includes("systems")) return "#7b8cff";
+    if (t.includes("database") || t.includes("storage")) return "#f72585";
+    if (t.includes("tools") || t.includes("devops")) return "#10b981";
+    return "var(--ice)";
   };
 
   return (
@@ -49,7 +59,7 @@ export const Stack: React.FC = () => {
                     background: `${accentColor}12`,
                   }}
                 >
-                  {cat.icon}
+                  {getIcon(cat.icon)}
                 </div>
                 <h3 style={{ color: accentColor }}>{cat.title}</h3>
                 <div>

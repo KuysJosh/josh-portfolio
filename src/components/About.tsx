@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Terminal, Copy, Check, MapPin } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 import { portfolioData } from "../data/portfolioData";
@@ -27,7 +28,7 @@ export const About: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyTerminal = () => {
-    const text = `josh — IT professional\nFocus:\n- web & systems dev\n- networks & security\n- troubleshooting\nLocation: Cebu, PH (UTC+8)\nStatus: open to work`;
+    const text = `josh — IT Staff & Full-Stack Developer\nStack:\n- MERN (MongoDB, Express, React, Node)\n- PHP & MySQL database systems\n- Python scripting\n- Modern HTML5, CSS3, & JS\nLocation: Tacloban City, Leyte, PH\nStatus: IT Staff · Open for commission`;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text);
       setCopied(true);
@@ -47,6 +48,9 @@ export const About: React.FC = () => {
           <div className="card b-intro rv" onPointerMove={onPointerMove}>
             <p className="big">{about.leadParagraph}</p>
             <p>{about.subParagraph}</p>
+            <div style={{ marginTop: "12px", display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px", fontFamily: "var(--mono)", color: "var(--ice)" }}>
+              <MapPin size={14} /> Based in Tacloban City, Leyte · Open for Commission
+            </div>
           </div>
 
           <div className="card b-term rv" onPointerMove={onPointerMove}>
@@ -56,7 +60,9 @@ export const About: React.FC = () => {
                   <i />
                   <i />
                   <i />
-                  <span>{about.terminal.userHost}</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                    <Terminal size={12} /> {about.terminal.userHost}
+                  </span>
                 </div>
 
                 <button
@@ -70,34 +76,40 @@ export const About: React.FC = () => {
                     fontSize: "11px",
                     cursor: "pointer",
                     fontFamily: "var(--mono)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "4px",
                     transition: "all 0.2s",
                   }}
                   title="Copy terminal text"
                 >
-                  {copied ? "✓ Copied" : "Copy"}
+                  {copied ? <Check size={11} color="var(--ok)" /> : <Copy size={11} />}
+                  <span>{copied ? "Copied" : "Copy"}</span>
                 </button>
               </div>
 
               <pre>
                 <span className="g">$</span> whoami
                 {"\n"}
-                <span className="s">josh</span> — IT professional
+                <span className="s">josh</span> — IT Staff &amp; Full-Stack Dev
                 {"\n\n"}
-                <span className="g">$</span> cat focus.txt
+                <span className="g">$</span> cat stack.txt
                 {"\n"}
-                <span className="w">&gt;</span> web &amp; systems dev
+                <span className="w">&gt;</span> MERN (MongoDB, Express, React, Node)
                 {"\n"}
-                <span className="w">&gt;</span> networks &amp; security
+                <span className="w">&gt;</span> PHP &amp; MySQL databases
                 {"\n"}
-                <span className="w">&gt;</span> troubleshooting
+                <span className="w">&gt;</span> Python scripting
+                {"\n"}
+                <span className="w">&gt;</span> HTML5, CSS3, &amp; JavaScript
                 {"\n\n"}
                 <span className="g">$</span> location
                 {"\n"}
-                <span className="s">Cebu, PH</span> <span className="c"># UTC+8</span>
+                <span className="s">Tacloban City, Leyte, PH</span> <span className="c"># UTC+8</span>
                 {"\n\n"}
                 <span className="g">$</span> status
                 {"\n"}
-                <span className="s" style={{ color: "var(--ok)" }}>● open to work</span>
+                <span className="s" style={{ color: "var(--ok)" }}>● IT Staff · Open for commission</span>
               </pre>
             </div>
           </div>

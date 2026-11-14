@@ -1,4 +1,5 @@
 import React from "react";
+import { Award, CheckCircle2, ShieldCheck } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { portfolioData } from "../data/portfolioData";
 
@@ -35,17 +36,37 @@ export const Certifications: React.FC = () => {
                     background: "rgba(16, 185, 129, 0.1)",
                   }}
                 >
-                  ✓
+                  <Award size={20} />
                 </div>
                 <b>{cert.title}</b>
                 <span>{cert.issuerYear}</span>
               </div>
 
-              <div style={{ marginTop: "16px", paddingTop: "12px", borderTop: "1px solid var(--line)" }}>
-                <span style={{ fontSize: "11.5px", fontFamily: "var(--mono)", color: "var(--ok)", display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--ok)" }} />
-                  Verified Credential
+              <div
+                style={{
+                  marginTop: "16px",
+                  paddingTop: "10px",
+                  borderTop: "1px solid var(--line)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "var(--mono)",
+                    color: "var(--ok)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "5px",
+                    fontWeight: 600,
+                  }}
+                >
+                  <CheckCircle2 size={13} />
+                  Verified Training
                 </span>
+                <ShieldCheck size={14} color="var(--ok)" style={{ opacity: 0.7 }} />
               </div>
             </div>
           ))}

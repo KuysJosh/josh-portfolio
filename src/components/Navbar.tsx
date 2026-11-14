@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Sparkles, PhoneCall, Mail, User, Layers, Briefcase, FolderGit2 } from "lucide-react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { portfolioData } from "../data/portfolioData";
 
@@ -9,7 +10,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({
   name = "josh",
-  location = "Tacloban City, Leyte · open to work",
+  location = "Tacloban City, Leyte · open for commission",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeSection = useScrollSpy(["about", "stack", "experience", "work", "contact"]);
@@ -34,11 +35,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { label: "About", href: "#about", id: "about" },
-    { label: "Stack", href: "#stack", id: "stack" },
-    { label: "Experience", href: "#experience", id: "experience" },
-    { label: "Projects", href: "#work", id: "work" },
-    { label: "Contact", href: "#contact", id: "contact" },
+    { label: "About", href: "#about", id: "about", icon: User },
+    { label: "Stack", href: "#stack", id: "stack", icon: Layers },
+    { label: "Experience", href: "#experience", id: "experience", icon: Briefcase },
+    { label: "Projects", href: "#work", id: "work", icon: FolderGit2 },
   ];
 
   return (
@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
 
         <ul className="menu" id="menu">
-          {navLinks.slice(0, 4).map((item) => (
+          {navLinks.map((item) => (
             <li key={item.id}>
               <a
                 href={item.href}
@@ -62,16 +62,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </ul>
 
         <a className="hire" href="#contact">
-          <span
-            style={{
-              width: "7px",
-              height: "7px",
-              borderRadius: "50%",
-              background: "#4ade80",
-              boxShadow: "0 0 8px #4ade80",
-            }}
-          />
-          Hire me
+          <Sparkles size={14} />
+          Commission Me
         </a>
 
         <button
@@ -88,63 +80,85 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       <div className="sheet" id="sheet">
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          {navLinks.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              onClick={() => toggleMenu(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={() => toggleMenu(false)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Icon size={18} color="var(--ice)" />
+                {item.label}
+              </a>
+            );
+          })}
+          <a
+            href="#contact"
+            onClick={() => toggleMenu(false)}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "var(--ice)",
+            }}
+          >
+            <Sparkles size={18} />
+            Commission / Contact
+          </a>
         </div>
 
-        {/* Quick mobile action bar */}
+        {/* Quick mobile action buttons */}
         <div
           style={{
-            marginTop: "24px",
+            marginTop: "20px",
             display: "flex",
-            gap: "10px",
-            flexWrap: "wrap",
+            flexDirection: "column",
+            gap: "8px",
           }}
         >
           <a
             href={`tel:${portfolioData.phone}`}
             style={{
-              fontSize: "14px",
-              padding: "10px 18px",
-              borderRadius: "99px",
-              background: "rgba(76, 201, 240, 0.15)",
-              border: "1px solid rgba(76, 201, 240, 0.3)",
+              fontSize: "13px",
+              padding: "10px 16px",
+              borderRadius: "12px",
+              background: "rgba(16, 185, 129, 0.15)",
+              border: "1px solid rgba(16, 185, 129, 0.3)",
               color: "#fff",
               fontFamily: "var(--mono)",
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
-              gap: "6px",
+              gap: "8px",
             }}
           >
-            📱 Call {portfolioData.phone}
+            <PhoneCall size={16} color="var(--ok)" /> Call {portfolioData.phone}
           </a>
           <a
             href={`mailto:${portfolioData.email}`}
             style={{
-              fontSize: "14px",
-              padding: "10px 18px",
-              borderRadius: "99px",
-              background: "rgba(255, 255, 255, 0.06)",
-              border: "1px solid var(--line-strong)",
-              color: "#cbd5e1",
+              fontSize: "13px",
+              padding: "10px 16px",
+              borderRadius: "12px",
+              background: "rgba(108, 130, 255, 0.15)",
+              border: "1px solid rgba(108, 130, 255, 0.3)",
+              color: "#fff",
               fontFamily: "var(--mono)",
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
-              gap: "6px",
+              gap: "8px",
             }}
           >
-            ✉ Email Me
+            <Mail size={16} color="var(--a2)" /> Email {portfolioData.email}
           </a>
         </div>
 
-        <small style={{ marginTop: "20px" }}>📍 {location}</small>
+        <small style={{ marginTop: "16px" }}>📍 {location}</small>
       </div>
     </header>
   );
