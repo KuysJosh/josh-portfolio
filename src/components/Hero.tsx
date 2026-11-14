@@ -56,11 +56,33 @@ export const Hero: React.FC<HeroProps> = ({
               onPointerMove={primaryBtnMagnetic.onPointerMove}
               onPointerLeave={primaryBtnMagnetic.onPointerLeave}
             >
-              View projects
+              View projects ↗
             </a>
             <a className="btn" href="#contact">
               Contact me
             </a>
+          </div>
+
+          <div
+            className="fade"
+            style={{
+              animationDelay: "1s",
+              marginTop: "28px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              flexWrap: "wrap",
+              fontSize: "13px",
+              fontFamily: "var(--mono)",
+              color: "var(--mute)",
+            }}
+          >
+            <span>Core focus:</span>
+            <span style={{ color: "var(--silver)" }}>Systems</span>
+            <span>·</span>
+            <span style={{ color: "var(--silver)" }}>Web Apps</span>
+            <span>·</span>
+            <span style={{ color: "var(--silver)" }}>Cloud &amp; DevOps</span>
           </div>
         </div>
 
@@ -72,4 +94,3 @@ export const Hero: React.FC<HeroProps> = ({
     </div>
   );
 };
-

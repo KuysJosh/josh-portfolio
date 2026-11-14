@@ -20,10 +20,33 @@ export const Certifications: React.FC = () => {
               key={idx}
               className="card rv"
               onPointerMove={onPointerMove}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
             >
-              <div className="ic">✓</div>
-              <b>{cert.title}</b>
-              <span>{cert.issuerYear}</span>
+              <div>
+                <div
+                  className="ic"
+                  style={{
+                    color: "var(--ok)",
+                    borderColor: "rgba(16, 185, 129, 0.3)",
+                    background: "rgba(16, 185, 129, 0.1)",
+                  }}
+                >
+                  ✓
+                </div>
+                <b>{cert.title}</b>
+                <span>{cert.issuerYear}</span>
+              </div>
+
+              <div style={{ marginTop: "16px", paddingTop: "12px", borderTop: "1px solid var(--line)" }}>
+                <span style={{ fontSize: "11.5px", fontFamily: "var(--mono)", color: "var(--ok)", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--ok)" }} />
+                  Verified Credential
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -31,4 +54,3 @@ export const Certifications: React.FC = () => {
     </section>
   );
 };
-

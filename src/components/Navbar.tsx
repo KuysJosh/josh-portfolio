@@ -60,6 +60,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         </ul>
 
         <a className="hire" href="#contact">
+          <span
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "#4ade80",
+              boxShadow: "0 0 8px #4ade80",
+            }}
+          />
           Hire me
         </a>
 
@@ -93,4 +102,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

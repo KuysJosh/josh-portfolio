@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 import { portfolioData } from "../data/portfolioData";
@@ -24,6 +24,16 @@ const StatCard: React.FC<StatCardProps> = ({ targetNumber, suffix, label }) => {
 export const About: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
   const { about } = portfolioData;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyTerminal = () => {
+    const text = `josh — IT professional\nFocus:\n- web & systems dev\n- networks & security\n- troubleshooting\nLocation: Cebu, PH (UTC+8)\nStatus: open to work`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <section id="about">
@@ -41,17 +51,38 @@ export const About: React.FC = () => {
 
           <div className="card b-term rv" onPointerMove={onPointerMove}>
             <div className="term">
-              <div className="t">
-                <i />
-                <i />
-                <i />
-                <span>{about.terminal.userHost}</span>
+              <div className="t" style={{ justifyContent: "space-between" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+                  <i />
+                  <i />
+                  <i />
+                  <span>{about.terminal.userHost}</span>
+                </div>
+
+                <button
+                  onClick={handleCopyTerminal}
+                  style={{
+                    background: "rgba(255, 255, 255, 0.06)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    borderRadius: "6px",
+                    color: copied ? "var(--ok)" : "var(--mute)",
+                    padding: "3px 8px",
+                    fontSize: "11px",
+                    cursor: "pointer",
+                    fontFamily: "var(--mono)",
+                    transition: "all 0.2s",
+                  }}
+                  title="Copy terminal text"
+                >
+                  {copied ? "✓ Copied" : "Copy"}
+                </button>
               </div>
+
               <pre>
                 <span className="g">$</span> whoami
                 {"\n"}
                 <span className="s">josh</span> — IT professional
-                {"\n"}
+                {"\n\n"}
                 <span className="g">$</span> cat focus.txt
                 {"\n"}
                 <span className="w">&gt;</span> web &amp; systems dev
@@ -59,14 +90,14 @@ export const About: React.FC = () => {
                 <span className="w">&gt;</span> networks &amp; security
                 {"\n"}
                 <span className="w">&gt;</span> troubleshooting
-                {"\n"}
+                {"\n\n"}
                 <span className="g">$</span> location
                 {"\n"}
                 <span className="s">Cebu, PH</span> <span className="c"># UTC+8</span>
-                {"\n"}
+                {"\n\n"}
                 <span className="g">$</span> status
                 {"\n"}
-                <span className="s">open to work</span>
+                <span className="s" style={{ color: "var(--ok)" }}>● open to work</span>
               </pre>
             </div>
           </div>
@@ -84,4 +115,3 @@ export const About: React.FC = () => {
     </section>
   );
 };
-

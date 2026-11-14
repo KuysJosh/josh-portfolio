@@ -20,8 +20,25 @@ export const Experience: React.FC = () => {
               key={idx}
               className="card e rv"
               onPointerMove={onPointerMove}
+              style={{
+                position: "relative",
+              }}
             >
-              <small>{item.period}</small>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+                <small
+                  style={{
+                    background: "rgba(76, 201, 240, 0.1)",
+                    border: "1px solid rgba(76, 201, 240, 0.25)",
+                    padding: "3px 10px",
+                    borderRadius: "99px",
+                  }}
+                >
+                  {item.period}
+                </small>
+                <span style={{ fontSize: "12px", fontFamily: "var(--mono)", color: "var(--mute)" }}>
+                  Verified Role
+                </span>
+              </div>
               <h3>{item.role}</h3>
               <p>{item.description}</p>
             </div>
@@ -31,4 +48,3 @@ export const Experience: React.FC = () => {
     </section>
   );
 };
-
