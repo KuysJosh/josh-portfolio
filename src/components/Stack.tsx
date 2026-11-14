@@ -2,6 +2,7 @@ import React from "react";
 import { Code2, Server, Database, Terminal, Cpu } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { portfolioData } from "../data/portfolioData";
+import { TechIcon } from "./TechIcon";
 
 export const Stack: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
@@ -64,7 +65,16 @@ export const Stack: React.FC = () => {
                 <h3 style={{ color: accentColor }}>{cat.title}</h3>
                 <div>
                   {cat.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="pl">
+                    <span
+                      key={sIdx}
+                      className="pl"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <TechIcon name={skill} size={15} />
                       {skill}
                     </span>
                   ))}

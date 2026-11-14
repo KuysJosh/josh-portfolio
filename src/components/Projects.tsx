@@ -3,6 +3,7 @@ import { FolderGit2, ExternalLink, Star, GitFork, Copy, Check } from "lucide-rea
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useGitHubProjects } from "../hooks/useGitHubProjects";
 import { portfolioData } from "../data/portfolioData";
+import { TechIcon } from "./TechIcon";
 
 export const Projects: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
@@ -222,9 +223,13 @@ export const Projects: React.FC = () => {
                           borderColor: `${color}40`,
                           color: color,
                           background: `${color}10`,
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "4px",
                         }}
                       >
-                        ● {tag}
+                        <TechIcon name={tag} size={11} />
+                        {tag}
                       </span>
                     );
                   })}
