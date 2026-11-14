@@ -17,9 +17,13 @@ export interface ExperienceItem {
 }
 
 export interface ProjectItem {
+  name?: string;
   title: string;
   description: string;
+  url?: string;
   tags: string[];
+  stars?: number;
+  forks?: number;
   terminal: {
     command: string;
     output: string[];
@@ -39,6 +43,8 @@ export interface SocialLink {
 
 export const portfolioData = {
   name: "Josh",
+  githubUsername: "KuysJosh",
+  githubUrl: "https://github.com/KuysJosh",
   location: "Cebu, Philippines",
   roles: [
     "IT professional",
@@ -138,42 +144,80 @@ export const portfolioData = {
   ] as ExperienceItem[],
   projects: [
     {
-      title: "Project one",
-      description: "One line on the problem, what you built and the result.",
-      tags: ["Web app", "React", "Node.js"],
+      name: "josh-portfolio",
+      title: "Josh IT Portfolio",
+      description:
+        "Modern interactive portfolio built with React, TypeScript & Vite. Features 60 FPS 3D head-tracking, custom terminal UI, and cybernetic HUD styling.",
+      url: "https://github.com/KuysJosh/josh-portfolio",
+      tags: ["React", "TypeScript", "Vite", "CSS3"],
       terminal: {
         command: "$ npm run build",
-        output: ["✓ compiled successfully", "✓ 42 tests passed"],
-        glowColor: "rgba(123,140,255,.3)",
+        output: ["✓ compiled successfully", "✓ 39 modules transformed", "✓ ready for production"],
+        glowColor: "rgba(123,140,255,.35)",
       },
     },
     {
-      title: "Project two",
-      description: "One line on the problem, what you built and the result.",
-      tags: ["Network", "Linux"],
+      name: "owwa_ims",
+      title: "OWWA IMS",
+      description:
+        "OWWA Information Management System — Web-based data management, record handling, and reporting platform.",
+      url: "https://github.com/KuysJosh/owwa_ims",
+      tags: ["PHP", "MySQL", "Information System"],
       terminal: {
-        command: "$ ping 10.0.0.1",
-        output: ["64 bytes: time=1.2 ms", "0% packet loss"],
-        glowColor: "rgba(94,225,255,.25)",
+        command: "$ php -S localhost:8000",
+        output: ["✓ Database connected: MySQL", "✓ Session secure & active", "✓ Query response: 2ms"],
+        glowColor: "rgba(94,225,255,.3)",
       },
     },
     {
-      title: "Project three",
-      description: "One line on the problem, what you built and the result.",
-      tags: ["Database", "MySQL"],
+      name: "Tacloban-Community-Run",
+      title: "Tacloban Community Run",
+      description:
+        "Community sports event portal for participants, showcasing registration details, marathon schedules, and route maps.",
+      url: "https://github.com/KuysJosh/Tacloban-Community-Run",
+      tags: ["HTML5", "CSS3", "JavaScript", "Sports Portal"],
       terminal: {
-        command: "$ SELECT * FROM users;",
-        output: ["128 rows returned", "query time: 4 ms"],
-        glowColor: "rgba(182,193,214,.2)",
+        command: "$ ping tacloban-run.local",
+        output: ["64 bytes: time=1.1 ms", "0% packet loss", "✓ CDN assets loaded"],
+        glowColor: "rgba(74,222,128,.3)",
       },
     },
     {
-      title: "Project four",
-      description: "One line on the problem, what you built and the result.",
-      tags: ["DevOps", "Docker"],
+      name: "archiving",
+      title: "Digital Archiving System",
+      description:
+        "Secure document archiving and record-keeping system with categorized file storage, audit logs, and search capabilities.",
+      url: "https://github.com/KuysJosh/archiving",
+      tags: ["PHP", "Database", "Document Management"],
       terminal: {
-        command: "$ docker compose up",
-        output: ["✓ 3 services running", "✓ healthcheck ok"],
+        command: "$ SELECT COUNT(*) FROM archives;",
+        output: ["2,450 records indexed", "Integrity check: PASS", "Query time: 3ms"],
+        glowColor: "rgba(182,193,214,.25)",
+      },
+    },
+    {
+      name: "photobooth",
+      title: "Interactive Photobooth",
+      description:
+        "Live web-based photobooth app designed for events, with real-time camera preview, filter engine, and instant photo capture.",
+      url: "https://github.com/KuysJosh/photobooth",
+      tags: ["JavaScript", "HTML5", "MediaStream API"],
+      terminal: {
+        command: "$ navigator.mediaDevices.getUserMedia()",
+        output: ["✓ Camera: 1080p 60fps connected", "✓ Canvas filter pipeline ready"],
+        glowColor: "rgba(254,188,46,.3)",
+      },
+    },
+    {
+      name: "rmmtc",
+      title: "RMMTC Platform",
+      description:
+        "Enterprise platform for operational tracking, service records, and management workflows.",
+      url: "https://github.com/KuysJosh/rmmtc",
+      tags: ["PHP", "Web App", "Enterprise"],
+      terminal: {
+        command: "$ docker compose up -d",
+        output: ["✓ 3 services running", "✓ healthcheck: healthy"],
         glowColor: "rgba(74,91,255,.4)",
       },
     },
@@ -184,9 +228,8 @@ export const portfolioData = {
     { title: "Certificate three", issuerYear: "Issuer · 2023" },
   ] as CertificationItem[],
   socials: [
+    { label: "GitHub", url: "https://github.com/KuysJosh" },
     { label: "LinkedIn", url: "#" },
-    { label: "GitHub", url: "#" },
     { label: "Facebook", url: "#" },
   ] as SocialLink[],
 };
-

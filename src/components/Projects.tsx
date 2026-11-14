@@ -1,10 +1,11 @@
 import React from "react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
+import { useGitHubProjects } from "../hooks/useGitHubProjects";
 import { portfolioData } from "../data/portfolioData";
 
 export const Projects: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
-  const { projects } = portfolioData;
+  const { projects } = useGitHubProjects(portfolioData.githubUsername);
 
   return (
     <section id="work" className="alt">
@@ -17,9 +18,11 @@ export const Projects: React.FC = () => {
         <div className="work">
           {projects.map((project, idx) => (
             <a
-              key={idx}
+              key={project.name || idx}
               className="card rv"
-              href="#contact"
+              href={project.url || `https://github.com/${portfolioData.githubUsername}`}
+              target="_blank"
+              rel="noopener noreferrer"
               onPointerMove={onPointerMove}
             >
               <div className="win">
@@ -27,6 +30,9 @@ export const Projects: React.FC = () => {
                   <i />
                   <i />
                   <i />
+                  <span>
+                    {project.name ? `github.com/${portfolioData.githubUsername}/${project.name}` : "bash"}
+                  </span>
                 </div>
                 <pre style={{ "--c1": project.terminal.glowColor } as React.CSSProperties}>
                   {project.terminal.command}
@@ -40,17 +46,39 @@ export const Projects: React.FC = () => {
                   {project.title} <span>↗</span>
                 </h3>
                 <p>{project.description}</p>
-                {project.tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="chip">
-                    {tag}
-                  </span>
-                ))}
+                <div>
+                  {project.tags.map((tag, tIdx) => (
+                    <span key={tIdx} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                  {typeof project.stars === "number" && project.stars > 0 && (
+                    <span className="chip">★ {project.stars}</span>
+                  )}
+                  {typeof project.forks === "number" && project.forks > 0 && (
+                    <span className="chip">⑂ {project.forks}</span>
+                  )}
+                </div>
               </div>
             </a>
           ))}
+        </div>
+
+        <div style={{ marginTop: "36px", textAlign: "center" }} className="rv">
+          <a
+            className="btn"
+            href={portfolioData.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: "12px 24px",
+              fontSize: "15px",
+            }}
+          >
+            Explore all repositories on GitHub ↗
+          </a>
         </div>
       </div>
     </section>
   );
 };
-
