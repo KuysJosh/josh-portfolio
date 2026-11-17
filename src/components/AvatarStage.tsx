@@ -10,18 +10,6 @@ const SPRITE_KEYS = [
   "half", "blink"
 ] as const;
 
-const GAZE_MAP = [
-  ["up-left", "up-left", "up", "up-right", "up-right"],
-  ["left", "left", "center", "right", "right"],
-  ["down-left", "down-left", "down", "down-right", "down-right"],
-];
-
-const MOOD_MAP: Record<string, string> = {
-  n: "neutral",
-  h: "happy",
-  c: "curious",
-};
-
 const EXP_COL_MAP = [0, 0, 2, 4, 4];
 
 interface AvatarStageProps {
@@ -35,7 +23,6 @@ export const AvatarStage: React.FC<AvatarStageProps> = ({
 }) => {
   const stageRef = useRef<HTMLDivElement | null>(null);
   const rigRef = useRef<HTMLDivElement | null>(null);
-  const hudRef = useRef<HTMLDivElement | null>(null);
   const imageRefs = useRef<Record<string, HTMLImageElement | null>>({});
 
   const reducedMotion = useReducedMotion();
@@ -84,14 +71,6 @@ export const AvatarStage: React.FC<AvatarStageProps> = ({
       const moodCode = now < hovUntil ? "h" : boost > 0 ? "c" : "n";
       const nextSprite = moodCode === "n" ? `n${row}${col}` : `${moodCode}1${EXP_COL_MAP[col]}`;
       show(nextSprite);
-
-      if (frame % 8 === 0) {
-        const gazeText = GAZE_MAP[row][col];
-        const moodText = MOOD_MAP[moodCode];
-        if (hudRef.current) {
-          hudRef.current.innerHTML = `gaze <span>${gazeText}</span><br>mood <span>${moodText}</span>`;
-        }
-      }
     };
 
     const handlePointerMove = (e: PointerEvent) => {
@@ -201,41 +180,29 @@ export const AvatarStage: React.FC<AvatarStageProps> = ({
 
   return (
     <div className="stage" id="stage" ref={stageRef}>
-      <div className="disc" />
-      <div className="orbit" />
-      <div className="orbit o2" />
-
-      <div className="rig" id="rig" ref={rigRef}>
-        {SPRITE_KEYS.map((key) => (
-          <img
-            key={key}
-            ref={(el) => {
-              imageRefs.current[key] = el;
-            }}
-            src={`/avatar/${key}.webp`}
-            alt={key === "n12" ? "Portrait of Josh in a maroon shirt and silver tie" : ""}
-            className={key === "n12" ? "on" : ""}
-            loading="eager"
-            decoding="async"
-          />
-        ))}
-      </div>
-
-      <div className="scan" />
-      <i className="br a" />
-      <i className="br b" />
-      <i className="br c" />
-      <i className="br d" />
-
-      <div className="hud" id="hud" ref={hudRef}>
-        gaze <span>center</span>
-        <br />
-        mood <span>neutral</span>
+      <div className="stage-card">
+        <div className="stage-backdrop" />
+        <div className="rig" id="rig" ref={rigRef}>
+          {SPRITE_KEYS.map((key) => (
+            <img
+              key={key}
+              ref={(el) => {
+                imageRefs.current[key] = el;
+              }}
+              src={`/avatar/${key}.webp`}
+              alt={key === "n12" ? "Portrait of Josh in a maroon shirt and silver tie" : ""}
+              className={key === "n12" ? "on" : ""}
+              loading="eager"
+              decoding="async"
+            />
+          ))}
+        </div>
       </div>
 
       <div className="tag">
+        <span className="tag-dot" />
         <b>{experienceYears}</b>
-        {experienceLabel}
+        <span>{experienceLabel}</span>
       </div>
     </div>
   );

@@ -8,65 +8,42 @@ export const Certifications: React.FC = () => {
   const { certifications } = portfolioData;
 
   return (
-    <section id="certs">
+    <section id="certs" className="section-certs">
       <div className="wrap">
-        <div className="rv">
-          <span className="k">/certifications</span>
-          <h2>Training &amp; certificates.</h2>
+        <div className="section-head rv">
+          <span className="section-pill">Certifications &amp; Training</span>
+          <h2>Verified credentials &amp; seminars.</h2>
+          <p className="section-sub">
+            Formal technical certifications, on-the-job training, and developer conferences.
+          </p>
         </div>
 
-        <div className="certs">
+        <div className="certs-grid">
           {certifications.map((cert, idx) => (
             <div
               key={idx}
-              className="card rv"
+              className="cert-card rv"
               onPointerMove={onPointerMove}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
             >
-              <div>
-                <div
-                  className="ic"
-                  style={{
-                    color: "var(--ok)",
-                    borderColor: "rgba(16, 185, 129, 0.3)",
-                    background: "rgba(16, 185, 129, 0.1)",
-                  }}
-                >
-                  <Award size={20} />
+              <div className="cert-top">
+                <div className="cert-icon-box">
+                  <Award size={18} />
                 </div>
-                <b>{cert.title}</b>
-                <span>{cert.issuerYear}</span>
+                <span className="cert-verified">
+                  <CheckCircle2 size={12} /> Verified
+                </span>
               </div>
 
-              <div
-                style={{
-                  marginTop: "16px",
-                  paddingTop: "10px",
-                  borderTop: "1px solid var(--line)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontFamily: "var(--mono)",
-                    color: "var(--ok)",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "5px",
-                    fontWeight: 600,
-                  }}
-                >
-                  <CheckCircle2 size={13} />
-                  Verified Training
+              <div className="cert-body">
+                <h4 className="cert-title">{cert.title}</h4>
+                <p className="cert-issuer">{cert.issuerYear}</p>
+              </div>
+
+              <div className="cert-footer">
+                <span className="cert-seal">
+                  <ShieldCheck size={13} />
+                  <span>Completed Training</span>
                 </span>
-                <ShieldCheck size={14} color="var(--ok)" style={{ opacity: 0.7 }} />
               </div>
             </div>
           ))}

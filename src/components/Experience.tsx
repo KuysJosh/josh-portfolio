@@ -1,3 +1,4 @@
+import React from "react";
 import { Calendar, Building2, Briefcase } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { portfolioData } from "../data/portfolioData";
@@ -7,70 +8,49 @@ export const Experience: React.FC = () => {
   const { experience } = portfolioData;
 
   return (
-    <section id="experience">
+    <section id="experience" className="section-experience">
       <div className="wrap">
-        <div className="rv">
-          <span className="k">/experience</span>
-          <h2>Where I’ve worked.</h2>
+        <div className="section-head rv">
+          <span className="section-pill">Career &amp; Background</span>
+          <h2>Professional path &amp; experience.</h2>
+          <p className="section-sub">
+            Hands-on work in IT support, administrative data systems, and technical problem solving.
+          </p>
         </div>
 
-        <div className="tl">
-          {experience.map((item, idx) => (
-            <div
-              key={idx}
-              className="card e rv"
-              onPointerMove={onPointerMove}
-              style={{ position: "relative" }}
-            >
+        <div className="timeline-wrap">
+          {experience.map((item, idx) => {
+            const isCurrent = item.period.toLowerCase().includes("present");
+            return (
               <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: "8px",
-                  marginBottom: "4px",
-                }}
+                key={idx}
+                className="timeline-card rv"
+                onPointerMove={onPointerMove}
               >
-                <small
-                  style={{
-                    background: "rgba(76, 201, 240, 0.1)",
-                    border: "1px solid rgba(76, 201, 240, 0.25)",
-                    padding: "3px 10px",
-                    borderRadius: "99px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
-                >
-                  <Calendar size={12} />
-                  {item.period}
-                </small>
+                <div className="timeline-meta-row">
+                  <div className={`period-badge ${isCurrent ? "current" : ""}`}>
+                    {isCurrent && <span className="period-dot" />}
+                    <Calendar size={12} />
+                    <span>{item.period}</span>
+                  </div>
 
-                {item.company && (
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      fontFamily: "var(--mono)",
-                      color: "var(--mute)",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "4px",
-                    }}
-                  >
-                    <Building2 size={12} />
-                    {item.company}
-                  </span>
-                )}
+                  {item.company && (
+                    <span className="company-tag">
+                      <Building2 size={13} />
+                      <span>{item.company}</span>
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="role-title">
+                  <Briefcase size={17} className="role-icon" />
+                  <span>{item.role}</span>
+                </h3>
+
+                <p className="role-desc">{item.description}</p>
               </div>
-
-              <h3 style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-                <Briefcase size={16} color="var(--ice)" />
-                <span>{item.role}</span>
-              </h3>
-              <p>{item.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

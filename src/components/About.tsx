@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Terminal, Copy, Check, MapPin } from "lucide-react";
+import React from "react";
+import { CheckCircle2, Laptop, Database, Cpu, Wrench } from "lucide-react";
 import { useCardSpotlight } from "../hooks/useCardSpotlight";
 import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 import { portfolioData } from "../data/portfolioData";
@@ -25,95 +25,86 @@ const StatCard: React.FC<StatCardProps> = ({ targetNumber, suffix, label }) => {
 export const About: React.FC = () => {
   const { onPointerMove } = useCardSpotlight();
   const { about } = portfolioData;
-  const [copied, setCopied] = useState(false);
 
-  const handleCopyTerminal = () => {
-    const text = `josh — IT Staff & Full-Stack Developer\nStack:\n- MERN (MongoDB, Express, React, Node)\n- PHP & MySQL database systems\n- Python scripting\n- Modern HTML5, CSS3, & JS\nLocation: Tacloban City, Leyte, PH\nStatus: IT Staff · Open for commission`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
+  const coreStrengths = [
+    {
+      icon: Laptop,
+      title: "Full-Stack Web Engineering",
+      desc: "Architecting interactive, responsive web applications using the MERN stack (React, Node, Express, MongoDB) alongside robust PHP systems.",
+    },
+    {
+      icon: Database,
+      title: "Database Administration",
+      desc: "Designing normalized relational schemas in MySQL and document collections in MongoDB with security and efficient querying in mind.",
+    },
+    {
+      icon: Wrench,
+      title: "IT Operations & Infrastructure",
+      desc: "Active IT Staff managing local hardware setups, operating systems, network connectivity, and daily technical operations.",
+    },
+    {
+      icon: Cpu,
+      title: "Automation & Scripting",
+      desc: "Writing streamlined Python utilities and shell scripts to automate repetitive system tasks and data workflows.",
+    },
+  ];
 
   return (
-    <section id="about">
+    <section id="about" className="section-about">
       <div className="wrap">
-        <div className="rv">
-          <span className="k">{about.tag}</span>
-          <h2>{about.title}</h2>
+        <div className="section-head rv">
+          <span className="section-pill">About Joshua</span>
+          <h2>Dependable IT craftsmanship &amp; practical engineering.</h2>
         </div>
 
         <div className="bento">
+          {/* Main Story Card */}
           <div className="card b-intro rv" onPointerMove={onPointerMove}>
+            <div className="b-badge">
+              <span className="badge-dot" />
+              <span>Tacloban City, Leyte</span>
+            </div>
             <p className="big">{about.leadParagraph}</p>
             <p>{about.subParagraph}</p>
-            <div style={{ marginTop: "12px", display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px", fontFamily: "var(--mono)", color: "var(--ice)" }}>
-              <MapPin size={14} /> Based in Tacloban City, Leyte · Open for Commission
+
+            <div className="about-tags">
+              <span className="about-pill">
+                <CheckCircle2 size={13} /> IT Staff (2025–Present)
+              </span>
+              <span className="about-pill">
+                <CheckCircle2 size={13} /> OWWA OJT Alumnus
+              </span>
+              <span className="about-pill">
+                <CheckCircle2 size={13} /> MERN &amp; PHP Developer
+              </span>
+              <span className="about-pill">
+                <CheckCircle2 size={13} /> Open for Commission
+              </span>
             </div>
           </div>
 
-          <div className="card b-term rv" onPointerMove={onPointerMove}>
-            <div className="term">
-              <div className="t" style={{ justifyContent: "space-between" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-                  <i />
-                  <i />
-                  <i />
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
-                    <Terminal size={12} /> {about.terminal.userHost}
-                  </span>
-                </div>
-
-                <button
-                  onClick={handleCopyTerminal}
-                  style={{
-                    background: "rgba(255, 255, 255, 0.06)",
-                    border: "1px solid rgba(255, 255, 255, 0.12)",
-                    borderRadius: "6px",
-                    color: copied ? "var(--ok)" : "var(--mute)",
-                    padding: "3px 8px",
-                    fontSize: "11px",
-                    cursor: "pointer",
-                    fontFamily: "var(--mono)",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "4px",
-                    transition: "all 0.2s",
-                  }}
-                  title="Copy terminal text"
-                >
-                  {copied ? <Check size={11} color="var(--ok)" /> : <Copy size={11} />}
-                  <span>{copied ? "Copied" : "Copy"}</span>
-                </button>
-              </div>
-
-              <pre>
-                <span className="g">$</span> whoami
-                {"\n"}
-                <span className="s">josh</span> — IT Staff &amp; Full-Stack Dev
-                {"\n\n"}
-                <span className="g">$</span> cat stack.txt
-                {"\n"}
-                <span className="w">&gt;</span> MERN (MongoDB, Express, React, Node)
-                {"\n"}
-                <span className="w">&gt;</span> PHP &amp; MySQL databases
-                {"\n"}
-                <span className="w">&gt;</span> Python scripting
-                {"\n"}
-                <span className="w">&gt;</span> HTML5, CSS3, &amp; JavaScript
-                {"\n\n"}
-                <span className="g">$</span> location
-                {"\n"}
-                <span className="s">Tacloban City, Leyte, PH</span> <span className="c"># UTC+8</span>
-                {"\n\n"}
-                <span className="g">$</span> status
-                {"\n"}
-                <span className="s" style={{ color: "var(--ok)" }}>● IT Staff · Open for commission</span>
-              </pre>
+          {/* Capabilities Card */}
+          <div className="card b-focus rv" onPointerMove={onPointerMove}>
+            <h3 className="b-title">What I bring to every project</h3>
+            <div className="focus-list">
+              {coreStrengths.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div key={idx} className="focus-item">
+                    <div className="focus-icon">
+                      <Icon size={16} />
+                    </div>
+                    <div>
+                      <strong>{item.title}</strong>
+                      <p>{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
+          {/* Stats Row */}
           {about.stats.map((stat, idx) => (
             <StatCard
               key={idx}

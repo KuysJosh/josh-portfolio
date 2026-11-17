@@ -23,59 +23,40 @@ export const Stack: React.FC = () => {
     }
   };
 
-  const getCategoryColor = (title: string) => {
-    const t = title.toLowerCase();
-    if (t.includes("mern") || t.includes("frontend")) return "#4cc9f0";
-    if (t.includes("backend") || t.includes("systems")) return "#7b8cff";
-    if (t.includes("database") || t.includes("storage")) return "#f72585";
-    if (t.includes("tools") || t.includes("devops")) return "#10b981";
-    return "var(--ice)";
-  };
-
   return (
-    <section id="stack" className="alt">
+    <section id="stack" className="section-stack">
       <div className="wrap">
-        <div className="rv">
-          <span className="k">/stack</span>
-          <h2>Tools I work with.</h2>
+        <div className="section-head rv">
+          <span className="section-pill">Technical Expertise</span>
+          <h2>Technologies &amp; systems I work with.</h2>
+          <p className="section-sub">
+            A practical stack covering modern full-stack web development, reliable database architecture, and day-to-day IT systems.
+          </p>
         </div>
 
         <div className="stack">
           {stack.map((cat, idx) => {
-            const accentColor = getCategoryColor(cat.title);
             return (
               <div
                 key={idx}
-                className="card rv"
+                className="card stack-card rv"
                 onPointerMove={onPointerMove}
-                style={{
-                  borderTop: `2px solid ${accentColor}40`,
-                }}
               >
-                <div
-                  className="ic"
-                  style={{
-                    color: accentColor,
-                    borderColor: `${accentColor}30`,
-                    background: `${accentColor}12`,
-                  }}
-                >
-                  {getIcon(cat.icon)}
+                <div className="stack-card-head">
+                  <div className="stack-icon-box">
+                    {getIcon(cat.icon)}
+                  </div>
+                  <h3>{cat.title}</h3>
                 </div>
-                <h3 style={{ color: accentColor }}>{cat.title}</h3>
-                <div>
+
+                <div className="stack-pills-wrap">
                   {cat.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="pl"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "6px",
-                      }}
+                      className="skill-pill"
                     >
                       <TechIcon name={skill} size={15} />
-                      {skill}
+                      <span>{skill}</span>
                     </span>
                   ))}
                 </div>

@@ -1,8 +1,10 @@
 import React from "react";
-import { Sparkles, Briefcase, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
 import { AvatarStage } from "./AvatarStage";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { useMagnetic } from "../hooks/useMagnetic";
+import { TechIcon } from "./TechIcon";
+import { portfolioData } from "../data/portfolioData";
 
 interface HeroProps {
   statusText?: string;
@@ -17,94 +19,105 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({
   statusText = "Currently working as IT Staff · Open for commission",
   headlineLine1 = "Hi, I’m Josh.",
-  headlineLine2 = "I build reliable IT solutions.",
-  roles = ["IT Staff", "MERN Stack Developer", "Python & PHP Developer", "Systems & Network Support"],
+  headlineLine2 = "Crafting dependable web systems & IT solutions.",
+  roles = ["IT Staff", "MERN Stack Developer", "PHP & MySQL Specialist", "Python & Automation Builder"],
   leadText = "Currently working as IT Staff based in Tacloban City, Leyte. I design, build, and support secure, high-performance web systems and databases. Open for freelance & commission projects.",
   experienceYears = "3+ years",
   experienceLabel = "in IT",
 }) => {
   const typedRole = useTypewriter(roles);
-  const primaryBtnMagnetic = useMagnetic(0.16, 0.26);
-  const secondaryBtnMagnetic = useMagnetic(0.16, 0.26);
+  const primaryBtnMagnetic = useMagnetic(0.14, 0.22);
+  const secondaryBtnMagnetic = useMagnetic(0.14, 0.22);
+
+  const heroTech = [
+    { name: "MERN Stack", label: "MERN" },
+    { name: "PHP", label: "PHP" },
+    { name: "MySQL", label: "MySQL" },
+    { name: "Python", label: "Python" },
+    { name: "JavaScript", label: "JavaScript" },
+  ];
 
   return (
-    <div className="hero" id="top">
-      <div className="grid" aria-hidden="true" />
+    <section className="hero" id="top">
+      <div className="hero-ambient" aria-hidden="true" />
       <div className="wrap">
-        <div>
-          <div className="status fade" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-            <Briefcase size={13} color="var(--ok)" />
+        <div className="hero-content">
+          <div className="status-pill fade">
+            <span className="live-dot" />
             <span>{statusText}</span>
           </div>
 
-          <h1>
-            <span className="l">
-              <span>{headlineLine1}</span>
-            </span>
-            <span className="l">
-              <span>{headlineLine2}</span>
-            </span>
+          <h1 className="hero-title">
+            <span className="hero-name">{headlineLine1}</span>
+            <span className="hero-statement">{headlineLine2}</span>
           </h1>
 
-          <div className="role fade" style={{ animationDelay: ".5s" }}>
-            &gt; <b>{typedRole}</b>
+          <div className="role-badge fade" style={{ animationDelay: ".3s" }}>
+            <span className="role-label">Specializing in</span>
+            <strong className="role-text">{typedRole}</strong>
           </div>
 
-          <p className="lead fade" style={{ animationDelay: ".65s" }}>
+          <p className="lead fade" style={{ animationDelay: ".45s" }}>
             {leadText}
           </p>
 
-          <div className="btns fade" style={{ animationDelay: ".8s" }}>
+          <div className="btns fade" style={{ animationDelay: ".6s" }}>
             <a
-              className="btn p"
+              className="btn btn-primary"
               href="#contact"
               onPointerMove={primaryBtnMagnetic.onPointerMove}
               onPointerLeave={primaryBtnMagnetic.onPointerLeave}
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
-              <Sparkles size={16} /> Commission Me
+              Commission a Project
             </a>
             <a
-              className="btn"
+              className="btn btn-secondary"
               href="#work"
               onPointerMove={secondaryBtnMagnetic.onPointerMove}
               onPointerLeave={secondaryBtnMagnetic.onPointerLeave}
-              style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
             >
-              View Projects <ArrowUpRight size={16} />
+              <span>Explore Projects</span>
+              <ArrowUpRight size={15} />
             </a>
           </div>
 
-          <div
-            className="fade"
-            style={{
-              animationDelay: "1s",
-              marginTop: "24px",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              flexWrap: "wrap",
-              fontSize: "12.5px",
-              fontFamily: "var(--mono)",
-              color: "var(--mute)",
-            }}
-          >
-            <span>Core:</span>
-            <span style={{ color: "var(--ice)", fontWeight: 500 }}>MERN Stack</span>
-            <span>·</span>
-            <span style={{ color: "var(--ice)", fontWeight: 500 }}>PHP &amp; MySQL</span>
-            <span>·</span>
-            <span style={{ color: "var(--ice)", fontWeight: 500 }}>Python</span>
-            <span>·</span>
-            <span style={{ color: "var(--ok)", fontWeight: 500 }}>IT Support</span>
+          {/* Quick Direct Contacts */}
+          <div className="hero-contact-strip fade" style={{ animationDelay: ".75s" }}>
+            <a href={`tel:${portfolioData.phone}`} className="quick-pill" title="Call directly">
+              <Phone size={13} />
+              <span>{portfolioData.phoneFormatted}</span>
+            </a>
+            <a href={`mailto:${portfolioData.email}`} className="quick-pill" title="Email directly">
+              <Mail size={13} />
+              <span>{portfolioData.email}</span>
+            </a>
+            <span className="quick-pill static">
+              <MapPin size={13} />
+              <span>Tacloban City, Leyte</span>
+            </span>
+          </div>
+
+          {/* Core Tech Stack Row */}
+          <div className="hero-tech-row fade" style={{ animationDelay: ".9s" }}>
+            <span className="tech-row-label">Core Stack:</span>
+            <div className="tech-pills-list">
+              {heroTech.map((tech) => (
+                <span key={tech.name} className="hero-tech-pill">
+                  <TechIcon name={tech.name} size={13} />
+                  <span>{tech.label}</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        <AvatarStage
-          experienceYears={experienceYears}
-          experienceLabel={experienceLabel}
-        />
+        <div className="hero-visual">
+          <AvatarStage
+            experienceYears={experienceYears}
+            experienceLabel={experienceLabel}
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
